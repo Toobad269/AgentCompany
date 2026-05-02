@@ -1,0 +1,56 @@
+services:
+  postgres:
+    image: postgres:17-alpine
+    container_name: agentcompany-postgres
+    restart: unless-stopped
+    environment:
+      POSTGRES_USER: agentcompany
+      POSTGRES_PASSWORD: agentcompany
+      POSTGRES_DB: agentcompany
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres-data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U agentcompany -d agentcompany"]
+      interval: 5s
+      timeout: 5s
+      retries: 10
+
+  web:
+    build:
+      context: .
+      dockerfile: apps/web/Dockerfile
+    container_name: agentcompany-web
+    restart: unless-stopped
+    environment:
+      DATABASE_URL: postgres://agentcompany:agentcompany@postgres:5432/agentcompany
+      NEXT_PUBLIC_APP_NAME: AgentCompany
+      APP_ENV: development
+      RATE_LIMIT_MAX_REQUESTS: 300
+      RATE_LIMIT_WINDOW_MS: 60000
+      DATABASE_POOL_MAX: 3
+      ENABLE_SERVER_COMMANDS: "false"
+    ports:
+      - "3000:3000"
+    depends_on:
+      postgres:
+        condition: service_healthy
+
+  db-setup:
+    build:
+      context: .
+      dockerfile: apps/web/Dockerfile
+    container_name: agentcompany-db-setup
+    profiles:
+      - setup
+    environment:
+      DATABASE_URL: postgres://agentcompany:agentcompany@postgres:5432/agentcompany
+      APP_ENV: development
+    command: ["sh", "-c", "npm run db:push && npm run db:seed"]
+    depends_on:
+      postgres:
+        condition: service_healthy
+
+volumes:
+  postgres-data:

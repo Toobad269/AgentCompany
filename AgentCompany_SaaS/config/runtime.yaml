@@ -1,0 +1,11 @@
+runtime:
+  defaultProvider: openai
+  localDevelopment:
+    docker: true
+    database: postgres
+  cloudTarget:
+    provider: aws
+    compute: app-runner-first
+    upgradeCompute: ecs-fargate
+    database: rds-postgresql
+    objectStorage: s3

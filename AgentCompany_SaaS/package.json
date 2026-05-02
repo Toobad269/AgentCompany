@@ -1,0 +1,29 @@
+{
+  "name": "agentcompany-saas",
+  "version": "0.1.0",
+  "private": true,
+  "description": "AgentCompany SaaS foundation: multi-tenant AI agent workspaces.",
+  "packageManager": "npm@11.12.1",
+  "workspaces": [
+    "apps/*",
+    "packages/*"
+  ],
+  "scripts": {
+    "dev": "npm run dev -w @agentcompany/web",
+    "build": "npm run build -w @agentcompany/web",
+    "start": "npm run start -w @agentcompany/web",
+    "lint": "npm run lint -w @agentcompany/web",
+    "typecheck": "npm run typecheck --workspaces --if-present",
+    "db:generate": "npm run db:generate -w @agentcompany/db",
+    "db:push": "npm run db:push -w @agentcompany/db",
+    "db:seed": "npm run db:seed -w @agentcompany/db",
+    "db:studio": "npm run db:studio -w @agentcompany/db",
+    "smoke": "node scripts/smoke-test.mjs",
+    "docker:up": "docker compose up --build",
+    "docker:down": "docker compose down"
+  },
+  "devDependencies": {
+    "dotenv": "^17.0.1",
+    "typescript": "^5.7.3"
+  }
+}
