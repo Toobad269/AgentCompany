@@ -1,0 +1,17 @@
+services:
+  agentcompany:
+    build: .
+    container_name: agentcompany
+    ports:
+      - "7842:7842"
+    env_file:
+      - .env
+    environment:
+      WEB_PORT: "7842"
+    volumes:
+      - ./.env:/app/.env
+      - ./databases:/app/databases
+      - ./incoming_files:/app/incoming_files
+      - ./memory:/app/memory
+      - ./workspaces:/app/workspaces
+    restart: unless-stopped
