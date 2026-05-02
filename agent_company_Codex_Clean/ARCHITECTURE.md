@@ -917,4 +917,4 @@ Persistente Daten bleiben auf dem Host-System erhalten.
 
 ---
 
-*Generiert von Claude für AgentCompany — toobad studios*
+
