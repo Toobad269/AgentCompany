@@ -66,14 +66,14 @@ user approval unless the app is explicitly placed in full-access mode.
 
 Important files:
 
-- `/Users/colin/Desktop/agent_company_Codex_Clean/main.py`
-- `/Users/colin/Desktop/agent_company_Codex_Clean/settings.py`
-- `/Users/colin/Desktop/agent_company_Codex_Clean/webapp.py`
-- `/Users/colin/Desktop/agent_company_Codex_Clean/core/tools.py`
-- `/Users/colin/Desktop/agent_company_Codex_Clean/core/db.py`
-- `/Users/colin/Desktop/agent_company_Codex_Clean/agents/ceo.py`
-- `/Users/colin/Desktop/agent_company_Codex_Clean/agents/manager.py`
-- `/Users/colin/Desktop/agent_company_Codex_Clean/agents/worker.py`
+- `main.py`
+- `settings.py`
+- `webapp.py`
+- `core/tools.py`
+- `core/db.py`
+- `agents/ceo.py`
+- `agents/manager.py`
+- `agents/worker.py`
 
 ### 4. Terminal-first architecture
 
